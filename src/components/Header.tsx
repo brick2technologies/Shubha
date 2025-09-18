@@ -1,35 +1,29 @@
 import React, { useState } from "react";
 import { Menu, X, Search, ShoppingCart, User } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
-interface HeaderProps {
-  onNavigate: (
-    page: "home" | "categories" | "festivals" | "about" | "contact" | "search" | "cart",
-    category?: string,
-    query?: string
-  ) => void;
-  currentPage: string;
-}
-
-const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
+const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const { getTotalItems } = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      onNavigate("search", undefined, searchQuery);
+      navigate(`/search/${searchQuery}`);
       setSearchQuery("");
     }
   };
 
   const menuItems = [
-    { name: "Home", page: "home" as const },
-    { name: "Categories", page: "categories" as const },
-    { name: "Festivals", page: "festivals" as const },
-    { name: "About", page: "about" as const },
-    { name: "Contact", page: "contact" as const },
+    { name: "Home", path: "/" },
+    { name: "Categories", path: "/categories/all" }, // default "all" category
+    { name: "Festivals", path: "/festivals" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -46,11 +40,11 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
           {/* Logo */}
           <div
             className="flex items-center cursor-pointer"
-            onClick={() => onNavigate("home")}  
+            onClick={() => navigate("/")}
           >
             <div className="flex items-center">
               <img
-                src="logo.png" // replace with your logo path
+                src="/logo.png"
                 alt="Shubham Logo"
                 className="w-28 h-auto mr-2 object-contain"
               />
@@ -62,9 +56,10 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
             {menuItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => onNavigate(item.page)}
-                className={`text-lg font-medium transition-colors hover:text-red-800 ${currentPage === item.page ? "text-saffron" : "text-gray-700"
-                  }`}
+                onClick={() => navigate(item.path)}
+                className={`text-lg font-medium transition-colors hover:text-red-800 ${
+                  location.pathname === item.path ? "text-saffron" : "text-gray-700"
+                }`}
               >
                 {item.name}
               </button>
@@ -79,8 +74,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
                 placeholder="Search pooja items..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-64 px-4 py-2 pr-10 border  rounded-full 
-               focus:ring-2 focus:ring-saffron focus:border-saffron outline-none transition-all"
+                className="w-64 px-4 py-2 pr-10 border rounded-full focus:ring-2 focus:ring-saffron focus:border-saffron outline-none transition-all"
               />
               <button
                 type="submit"
@@ -90,7 +84,6 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
               </button>
             </form>
 
-
             {/* Profile Icon */}
             <button className="p-2 text-gray-700 hover:text-red-800">
               <User className="w-6 h-6" />
@@ -98,7 +91,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
 
             {/* Cart Icon */}
             <button
-              onClick={() => onNavigate("cart")}
+              onClick={() => navigate("/cart")}
               className="relative p-2 text-gray-700 hover:text-red-800"
             >
               <ShoppingCart className="w-6 h-6" />
@@ -113,13 +106,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
             <button
-              onClick={() => onNavigate("search")}
+              onClick={() => navigate("/search")}
               className="p-2 text-gray-700"
             >
               <Search className="w-5 h-5" />
             </button>
             <button
-              onClick={() => onNavigate("cart")}
+              onClick={() => navigate("/cart")}
               className="relative p-2 text-gray-700"
             >
               <ShoppingCart className="w-5 h-5" />
@@ -146,13 +139,14 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, currentPage }) => {
                 <button
                   key={item.name}
                   onClick={() => {
-                    onNavigate(item.page);
+                    navigate(item.path);
                     setIsMenuOpen(false);
                   }}
-                  className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${currentPage === item.page
+                  className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    location.pathname === item.path
                       ? "text-red-800 bg-gray-100"
                       : "text-gray-700 hover:text-red-800 hover:bg-gray-100"
-                    }`}
+                  }`}
                 >
                   {item.name}
                 </button>

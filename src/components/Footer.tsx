@@ -1,11 +1,10 @@
 import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-interface FooterProps {
-  onNavigate: (page: 'home' | 'categories' | 'search' | 'cart') => void;
-}
+const Footer: React.FC = () => {
+  const navigate = useNavigate();
 
-const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer className="bg-[#0a0505] text-[#ef9221]"> {/* Deep red background */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -15,11 +14,10 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div>
             <div className="flex items-center space-x-3 mb-4">
               <img
-                src="logo.png"
+                src="/logo.png"
                 alt="Shubham Logo"
                 className="w-28 h-auto "
               />
-              
             </div>
             <p className="text-sm mb-4">
               Bringing divinity to your home with authentic pooja items and spiritual essentials.
@@ -30,8 +28,16 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li><button onClick={() => onNavigate('home')} className="hover:text-saffron transition-colors">About Us</button></li>
-              <li><button onClick={() => onNavigate('categories')} className="hover:text-saffron transition-colors">Contact</button></li>
+              <li>
+                <button onClick={() => navigate("/about")} className="hover:text-saffron transition-colors">
+                  About Us
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/contact")} className="hover:text-saffron transition-colors">
+                  Contact
+                </button>
+              </li>
               <li><button className="hover:text-saffron transition-colors">Shipping Info</button></li>
               <li><button className="hover:text-saffron transition-colors">Return Policy</button></li>
               <li><button className="hover:text-saffron transition-colors">FAQ</button></li>

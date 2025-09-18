@@ -1,7 +1,8 @@
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
-import { Product } from '../data/products';
 import { useCart } from '../context/CartContext';
+import { Product } from '../types';
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   product: Product;
@@ -9,9 +10,10 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart } = useCart();
+  const navigate = useNavigate(); // ✅ Initialize navigate
 
   const handleAddToCart = (e: React.MouseEvent) => {
-    e.stopPropagation();
+    e.stopPropagation(); // Prevent triggering the card click
     addToCart({
       id: product.id,
       name: product.name,
@@ -22,7 +24,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <div className="group relative bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-saffron/20 hover:shadow-2xl hover:border-saffron/40 transition-all duration-300 overflow-hidden">
+    <div
+      onClick={() => navigate(`/product/${product.id}`)} // ✅ Use navigate
+      className="group relative bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-saffron/20 hover:shadow-2xl hover:border-saffron/40 transition-all duration-300 overflow-hidden cursor-pointer"
+    >
       {/* Product Image */}
       <div className="relative">
         <img

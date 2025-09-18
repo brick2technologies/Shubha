@@ -1,10 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-interface FestivalsProps {
-  onNavigate: (page: 'categories', category?: string) => void;
-}
+const Festivals: React.FC = () => {
+  const navigate = useNavigate();
 
-const Festivals: React.FC<FestivalsProps> = ({ onNavigate }) => {
   const specials = [
     { name: "Ganesh Chaturthi", image: "/images/ganesh.jpg" },
     { name: "Dasara", image: "/images/dasara.jpg" },
@@ -22,9 +21,15 @@ const Festivals: React.FC<FestivalsProps> = ({ onNavigate }) => {
             <div
               key={fest.name}
               className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition cursor-pointer"
-              onClick={() => onNavigate("categories", fest.name)}
+              onClick={() => navigate(`/categories/${fest.name}`)}
             >
-              <img src={fest.image} alt={fest.name} className="w-full h-48 object-cover" />
+              <img
+                src={fest.image}
+                alt={fest.name}
+                className="w-full h-48 object-cover"
+                loading="lazy"
+                decoding="async"
+              />
               <h3 className="py-4 font-semibold text-brown">{fest.name}</h3>
             </div>
           ))}

@@ -1,59 +1,40 @@
-import { useState} from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Categories from './pages/Categories';
-import Search from './pages/Search';
-import Cart from './pages/Cart';
-import { CartProvider } from './context/CartContext';
-import AboutUs from './pages/Aboutus';
-import ContactUs from './pages/ContactUs';
-import Festivals from './pages/Festivals';
-
-type Page = 'home' | 'categories' | 'festivals' | 'about' | 'contact' | 'search' | 'cart';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Categories from "./pages/Categories";
+import Search from "./pages/Search";
+import Cart from "./pages/Cart";
+import { CartProvider } from "./context/CartContext";
+import AboutUs from "./pages/Aboutus";
+import ContactUs from "./pages/ContactUs";
+import Festivals from "./pages/Festivals";
+import ProductDetail from "./pages/ProductDetails";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('home');
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const [searchQuery, setSearchQuery] = useState<string>('');
-
-  const navigateTo = (page: Page, category?: string, query?: string) => {
-    setCurrentPage(page);
-    if (category) setSelectedCategory(category);
-    if (query !== undefined) setSearchQuery(query);
-  };
-
-  const renderPage = () => {
-  switch (currentPage) {
-    case 'home':
-      return <Home onNavigate={navigateTo} />;
-    case 'categories':
-      return <Categories category={selectedCategory} onNavigate={navigateTo} />;
-    case 'festivals':
-      return <Festivals onNavigate={navigateTo} />;
-    case 'about':
-      return <AboutUs onNavigate={navigateTo} />;
-    case 'contact':
-      return <ContactUs onNavigate={navigateTo} />;
-    case 'search':
-      return <Search query={searchQuery} onNavigate={navigateTo} />;
-    case 'cart':
-      return <Cart onNavigate={navigateTo} />;
-    default:
-      return <Home onNavigate={navigateTo} />;
-  }
-};
-
   return (
     <CartProvider>
-      <div className="min-h-screen bg-cream">
-        <Header onNavigate={navigateTo} currentPage={currentPage} />
-        <main className="pt-16">
-          {renderPage()}
-        </main>
-        <Footer onNavigate={navigateTo} />
-      </div>
+      {/* Router must wrap everything that uses useNavigate */}
+      <Router>
+        <ScrollToTop />
+        <div className="min-h-screen bg-cream">
+          <Header /> {/* ✅ inside Router */}
+          <main className="pt-16">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/categories/:category" element={<Categories />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/festivals" element={<Festivals />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/search/:query" element={<Search />} />
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+          </main>
+          <Footer /> {/* ✅ inside Router */}
+        </div>
+      </Router>
     </CartProvider>
   );
 }
