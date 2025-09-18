@@ -53,9 +53,9 @@ const AboutUs: React.FC = () => {
         {/* Our Story */}
         <section className="grid md:grid-cols-2 gap-12 items-center mb-20">
           <motion.img
-            src="/images/about-hero.jpg"
+            src="/about.png"
             alt="Devotional products and pooja essentials from Shubha"
-            className="rounded-2xl shadow-lg w-full object-cover"
+            className="rounded-2xl shadow-lg w-full object-contain"
             loading="lazy"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}

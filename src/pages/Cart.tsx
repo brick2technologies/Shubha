@@ -21,7 +21,7 @@ const Cart: React.FC = () => {
               Start shopping to add items to your cart
             </p>
             <button
-              onClick={() => navigate("/categories")}
+              onClick={() => navigate("/categories/all")}
               className="bg-saffron text-white px-8 py-3 rounded-lg font-medium hover:bg-brown transition-colors"
             >
               Continue Shopping
@@ -117,7 +117,10 @@ const Cart: React.FC = () => {
               >
                 Continue Shopping
               </button>
-              <button className="flex-1 bg-saffron text-white py-3 px-6 rounded-lg font-medium hover:bg-brown transition-colors">
+              <button
+                onClick={() => navigate("/checkout")}
+                className="flex-1 bg-saffron text-white py-3 px-6 rounded-lg font-medium hover:bg-brown transition-colors"
+              >
                 Proceed to Checkout
               </button>
             </div>

@@ -65,13 +65,13 @@ const Home: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <button
-                onClick={() => navigate("/categories")}
+                onClick={() => navigate("/categories/all")}
                 className="bg-gradient-to-r from-yellow-400 to-[#ef9221] text-white font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg hover:scale-105 transition drop-shadow-[0_0_20px_rgba(255,140,0,0.8)]"
               >
                 👜 Shop Now
               </button>
               <button
-                onClick={() => navigate("/categories")}
+                onClick={() => navigate("/categories/all")}
                 className="border-2 border-red-600 text-red-600 font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-red-600 hover:text-white transition"
               >
                 Explore Categories

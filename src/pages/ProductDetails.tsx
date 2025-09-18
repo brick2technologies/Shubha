@@ -32,7 +32,7 @@ export default function ProductDetails() {
   );
 
   return (
-    <div className="min-h-screen bg-orange-50 py-12 px-6 lg:px-20">
+    <div className="min-h-screen bg-orange-50 py-28 px-6 lg:px-20 ">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
         {/* Left: Product Image */}
         <div className="lg:w-1/2 flex justify-center items-start">
@@ -99,7 +99,7 @@ export default function ProductDetails() {
                 <img
                   src={p.image}
                   alt={p.name}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-48 object-contain"
                 />
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-semibold">{p.name}</h3>

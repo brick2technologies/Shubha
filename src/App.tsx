@@ -11,6 +11,7 @@ import ContactUs from "./pages/ContactUs";
 import Festivals from "./pages/Festivals";
 import ProductDetail from "./pages/ProductDetails";
 import ScrollToTop from "./components/ScrollToTop";
+import CheckoutPage from "./pages/CheckoutPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/search/:query" element={<Search />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
             </Routes>
           </main>
           <Footer /> {/* ✅ inside Router */}
