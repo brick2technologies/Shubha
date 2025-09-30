@@ -12,6 +12,7 @@ import Festivals from "./pages/Festivals";
 import ProductDetail from "./pages/ProductDetails";
 import ScrollToTop from "./components/ScrollToTop";
 import CheckoutPage from "./pages/CheckoutPage";
+import LandingPage from "./pages/EventPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Route path="/search/:query" element={<Search />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/eventplaning" element={<LandingPage />} />
             </Routes>
           </main>
           <Footer /> {/* ✅ inside Router */}

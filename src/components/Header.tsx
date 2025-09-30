@@ -20,7 +20,8 @@ const Header: React.FC = () => {
 
   const menuItems = [
     { name: "Home", path: "/" },
-    { name: "Categories", path: "/categories/all" }, // default "all" category
+    { name: "Categories", path: "/categories/all" },
+    { name: "Event Planning", path: "/eventplaning" },// default "all" category
     { name: "Festivals", path: "/festivals" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
@@ -57,9 +58,8 @@ const Header: React.FC = () => {
               <button
                 key={item.name}
                 onClick={() => navigate(item.path)}
-                className={`text-lg font-medium transition-colors hover:text-red-800 ${
-                  location.pathname === item.path ? "text-saffron" : "text-gray-700"
-                }`}
+                className={`text-lg font-medium transition-colors hover:text-red-800 ${location.pathname === item.path ? "text-saffron" : "text-gray-700"
+                  }`}
               >
                 {item.name}
               </button>
@@ -142,11 +142,10 @@ const Header: React.FC = () => {
                     navigate(item.path);
                     setIsMenuOpen(false);
                   }}
-                  className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                    location.pathname === item.path
+                  className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${location.pathname === item.path
                       ? "text-red-800 bg-gray-100"
                       : "text-gray-700 hover:text-red-800 hover:bg-gray-100"
-                  }`}
+                    }`}
                 >
                   {item.name}
                 </button>
