@@ -83,9 +83,48 @@ const AboutUs: React.FC = () => {
           </motion.article>
         </section>
 
+        {/* About Shubha Section */}
+        {/* About & Vision Grid */}
+<section className="grid md:grid-cols-2 gap-12 mb-20 max-w-7xl mx-auto px-6 lg:px-12">
+  {/* About Shubha */}
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.7 }}
+    className="text-center md:text-left"
+  >
+    <h2 className="text-3xl font-bold text-brown mb-4">🌸 About Shubha</h2>
+    <p className="text-gray-700 leading-relaxed mb-4">
+      Life is made of countless moments, and every moment becomes more meaningful when celebrated with purity and joy. Shubha is your one-stop destination for everything auspicious – from Puja essentials, soulful music, elegant decoration, and divine photography to creating memories that last forever.
+    </p>
+    <p className="text-gray-700 leading-relaxed">
+      At Shubha, we believe that every occasion – whether big or small – deserves to be celebrated with devotion, beauty, and grace. With carefully curated services and authentic products, we make your sacred moments truly memorable.
+    </p>
+  </motion.div>
+
+  {/* Our Vision */}
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.7 }}
+    className="text-center md:text-left"
+  >
+    <h2 className="text-3xl font-bold text-brown mb-4">🌟 Our Vision</h2>
+    <p className="text-gray-700 leading-relaxed mb-4">
+      Our vision is to bring culture, tradition, and celebration together at one place – so that you can focus on cherishing your special moments while we take care of every detail.
+    </p>
+    <p className="text-gray-700 leading-relaxed">
+      We aim to make auspiciousness accessible and effortless, blending timeless traditions with modern convenience. Shubha is here to ensure that every ritual, every celebration, and every memory you create is filled with positivity, devotion, and joy.
+    </p>
+  </motion.div>
+</section>
+
+
         {/* Values Section */}
         <section aria-label="Our Values">
-          <div className="grid md:grid-cols-3 gap-10 text-center">
+          <div className="grid md:grid-cols-3 gap-10 text-center mb-16">
             {values.map((value, i) => (
               <motion.div
                 key={value.title}
@@ -113,13 +152,6 @@ const AboutUs: React.FC = () => {
           >
             Explore
           </button>
-          {/* OR using Link */}
-          {/* <Link
-            to="/categories"
-            className="inline-block px-8 py-3 bg-saffron text-white font-semibold rounded-full shadow-md hover:bg-brown transition"
-          >
-            Explore
-          </Link> */}
         </div>
       </div>
     </section>
