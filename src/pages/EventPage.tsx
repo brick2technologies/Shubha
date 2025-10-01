@@ -134,7 +134,7 @@ const LandingPage: React.FC = () => {
             transition={{ duration: 1 }}
           >
             <motion.h1
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 text-white drop-shadow-2xl font-playfair"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-white drop-shadow-2xl font-playfair leading-tight break-words"
               animate={{
                 textShadow: [
                   "0 0 20px rgba(255,153,51,0.5)",
@@ -148,6 +148,8 @@ const LandingPage: React.FC = () => {
               <br />
               <span className="text-[#FFD700]">EVENTS</span>
             </motion.h1>
+
+
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-12 text-white font-light tracking-wide font-Inter">
               Where Dreams Meet Reality
             </p>
